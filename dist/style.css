@@ -1,0 +1,84 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    text-align: center;  
+}
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-size: cover; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+  #headerDiv{
+    margin-bottom: 65px;
+    background-color: rgba(0,0,0,.85);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  #headerDiv h1{
+    font-family: 'Tangerine', cursive;
+    font-size: 100px;
+    margin: 38px;
+  }
+
+  #tabs{
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+  #content {
+    padding: 20px;
+    width: 40%;
+    min-height: 55%;
+    max-height: 100%;
+    align-self: center;
+    text-align: center;  
+    background-color: rgba(0,0,0,.70);
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+
+  }
+
+    #content h1 {
+    text-align: center;
+    }
+
+    #content div {
+    /* This centers the div element itself, if it has a specified width. */
+    margin: auto;
+    justify-content: center;
+    }
+
+    #tabs button{
+        background: none;
+        border: none;
+        color: inherit; /* Use the color of the parent element */
+        cursor: pointer; /* Change mouse cursor to pointer on hover */
+        padding: 0;
+        text-align: inherit;
+        text-decoration: underline; /* Optional: Add underline to mimic link styling */
+        font-family: inherit; /* Use the font of the parent element */
+        font-size: inherit; /* Use the font size of the parent element */
+        outline: none; /* Remove focus highlight. Note: this can impact accessibility */
+    }
+
+  ul{
+    text-align: center;
+    list-style: none;
+  }
+  
+  footer {
+    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+		text-align: center;
+  }
