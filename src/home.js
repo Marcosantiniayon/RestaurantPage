@@ -7,7 +7,7 @@ function createHome() {
     content.appendChild(h3);
 
     const chef = document.createElement('img');
-    chef.src = '../chef.jpg';
+    chef.src = '../images/chef.jpg';
     chef.width = 300;
     // chef.height = 300;
     chef.style.borderRadius = '80px';

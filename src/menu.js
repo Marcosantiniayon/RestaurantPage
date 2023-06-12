@@ -54,25 +54,25 @@ function createMenu() {
     content.appendChild(menuH1);
 
     const beverages = [
-        { name: 'Soda', imageUrl: 'url1', description: 'Cool and refreshing.' },
-        { name: 'Lemonade', imageUrl: 'url2', description: 'Sweet and tangy.' },
-        { name: 'Wine', imageUrl: 'url3', description: 'Elegant and sophisticated.' }
+        { name: 'Soda', imageUrl: '../images/soda2.jpg', description: 'Cool and refreshing.' },
+        { name: 'Lemonade', imageUrl: '../images/lemonade.jpg', description: 'Sweet and tangy.' },
+        { name: 'Wine', imageUrl: '../images/wine.jpg', description: 'Elegant and sophisticated.' }
     ];
     const beveragesDiv = createItemGroup('Beverages', beverages);
     content.appendChild(beveragesDiv);
 
     const sides = [
-        { name: 'Breadsticks', imageUrl: 'url4', description: 'Crunchy and delicious.' },
-        { name: 'Mozzarella Sticks', imageUrl: 'url5', description: 'Cheesy and filling.' },
-        { name: 'Salad', imageUrl: 'url6', description: 'Light and healthy.' }
+        { name: 'Breadsticks', imageUrl: '../images/breadsticks.jpg', description: 'Crunchy and delicious.' },
+        { name: 'Mozzarella Sticks', imageUrl: '../images/mozarellasticks.jpg', description: 'Cheesy and filling.' },
+        { name: 'Salad', imageUrl: '../images/salad.jpg', description: 'Light and healthy.' }
     ];
     const sidesDiv = createItemGroup('Sides', sides);
     content.appendChild(sidesDiv);
 
     const mainDishes = [
-        { name: 'Lasagna', imageUrl: 'url7', description: 'Rich and flavorful.' },
-        { name: 'Spaghetti & Meatballs', imageUrl: 'url8', description: 'Classic and hearty.' },
-        { name: 'Margherita Pizza', imageUrl: 'url9', description: 'Simple and delicious.' }
+        { name: 'Lasagna', imageUrl: '../images/lasagna.jpg', description: 'Rich and flavorful.' },
+        { name: 'Spaghetti & Meatsauce', imageUrl: '../images/spaghetti.jpg', description: 'Classic and hearty.' },
+        { name: 'Margherita Pizza', imageUrl: '../images/pizza.jpg', description: 'Simple and delicious.' }
     ];
     const mainDishesDiv = createItemGroup('Main Dishes', mainDishes);
     content.appendChild(mainDishesDiv);
