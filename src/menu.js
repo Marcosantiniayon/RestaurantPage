@@ -49,9 +49,13 @@ function createItemGroup(title, items) {
 function createMenu() {
     const content = document.getElementById('content');
 
+    // create inner-content div
+    const innerContent = document.createElement('div');
+    innerContent.id = 'inner-content';
+
     const menuH1 = document.createElement('h1');
     menuH1.textContent = 'Our Menu';
-    content.appendChild(menuH1);
+    innerContent.appendChild(menuH1);
 
     const beverages = [
         { name: 'Soda', imageUrl: '../images/soda2.jpg', description: 'Cool and refreshing.' },
@@ -59,7 +63,7 @@ function createMenu() {
         { name: 'Wine', imageUrl: '../images/wine.jpg', description: 'Elegant and sophisticated.' }
     ];
     const beveragesDiv = createItemGroup('Beverages', beverages);
-    content.appendChild(beveragesDiv);
+    innerContent.appendChild(beveragesDiv);
 
     const sides = [
         { name: 'Breadsticks', imageUrl: '../images/breadsticks.jpg', description: 'Crunchy and delicious.' },
@@ -67,7 +71,7 @@ function createMenu() {
         { name: 'Salad', imageUrl: '../images/salad.jpg', description: 'Light and healthy.' }
     ];
     const sidesDiv = createItemGroup('Sides', sides);
-    content.appendChild(sidesDiv);
+    innerContent.appendChild(sidesDiv);
 
     const mainDishes = [
         { name: 'Lasagna', imageUrl: '../images/lasagna.jpg', description: 'Rich and flavorful.' },
@@ -75,7 +79,11 @@ function createMenu() {
         { name: 'Margherita Pizza', imageUrl: '../images/pizza.jpg', description: 'Simple and delicious.' }
     ];
     const mainDishesDiv = createItemGroup('Main Dishes', mainDishes);
-    content.appendChild(mainDishesDiv);
+    innerContent.appendChild(mainDishesDiv);
+
+    // Append innerContent to content
+    content.appendChild(innerContent);
 }
+
 
 export default createMenu;

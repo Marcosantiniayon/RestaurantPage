@@ -1,6 +1,6 @@
 function createHeader() {
     const body = document.querySelector('body');
-    document.body.style.backgroundImage = "url('../pasta3.jpg')";
+    document.body.style.backgroundImage = "url('..pasta3.jpg')";
 
     // Header for all pages
     const headerDiv = document.createElement('div');
@@ -32,5 +32,6 @@ function createHeader() {
     
     body.insertBefore(headerDiv, body.childNodes[0]);
 }
+
 
 export default createHeader;

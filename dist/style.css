@@ -27,6 +27,9 @@ body::before {
     background-color: rgba(0,0,0,.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(2px);
+    width:100%;
+    width: 100vw;
+    max-width: 100vw;
   }
 
   #headerDiv h1{
@@ -52,10 +55,10 @@ body::before {
     max-height: auto;
     align-self: center;
     text-align: center;  
-    background-color: rgba(0,0,0,.50);
+    background-color: rgba(0,0,0,.55);
     border-radius: 4px;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
     #content h1 {
@@ -106,6 +109,7 @@ padding: 0;
 .img-container {
     width: 130px;
     height: 130px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -150,3 +154,14 @@ padding: 0;
     width: 100%;
 		text-align: center;
   }
+
+/* CONTENT FADE IN-OUT EFFECT */
+
+#content {
+    transition: opacity 0.5s;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
