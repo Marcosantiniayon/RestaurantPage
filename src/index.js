@@ -8,11 +8,23 @@ loadPage();
 
 function loadPage() {
     changeContent(createHome);
+    setActiveTab('homeTab');
 
-    document.getElementById('homeTab').addEventListener('click', () => changeContent(createHome));
-    document.getElementById('menuTab').addEventListener('click', () => changeContent(createMenu));
-    document.getElementById('contactTab').addEventListener('click', () => changeContent(createContact));
+    document.getElementById('homeTab').addEventListener('click', () => { changeContent(createHome); setActiveTab('homeTab'); });
+    document.getElementById('menuTab').addEventListener('click', () => { changeContent(createMenu); setActiveTab('menuTab'); });
+    document.getElementById('contactTab').addEventListener('click', () => { changeContent(createContact); setActiveTab('contactTab'); });
 }
+
+function setActiveTab(tabId) {
+    // remove 'active' class from all tabs
+    const tabs = document.querySelectorAll('#tabs button');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    // add 'active' class to the current tab
+    const activeTab = document.getElementById(tabId);
+    activeTab.classList.add('active');
+}
+
 
 // This function is responsible for the fade out and in effect
 function changeContent(newContentFunction) {
