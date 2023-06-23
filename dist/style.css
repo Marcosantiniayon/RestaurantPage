@@ -120,6 +120,12 @@ padding: 0;
     margin: 1em;
 }
 
+.card:hover {
+    background-color: rgba(255, 251, 251, 0.3); /* Change the background color on hover */
+    transform: scale(1.05); /* Apply a scale transformation on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Add a transition effect */
+}
+
 .img-container {
     width: 130px;
     height: 130px;
@@ -159,6 +165,34 @@ padding: 0;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 10px;
 }
+
+#cartTab {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: none !important;
+    font-family: inherit;
+    font-size: larger;
+    outline: none;
+  }
+  
+  #cartMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  #cartMenu.visible {
+    display: block;
+  }
+  
 /* ------ END OF MENU ------- */
   
   footer {

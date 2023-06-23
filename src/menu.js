@@ -1,3 +1,5 @@
+let selectedItems = [];
+
 function createMenuItemCard(name, imageUrl, description) {
     const card = document.createElement('li');
     card.classList.add('card');
@@ -83,7 +85,53 @@ function createMenu() {
 
     // Append innerContent to content
     content.appendChild(innerContent);
+
+     // Add event listeners to menu items
+     const menuItems = document.querySelectorAll('.card');
+     menuItems.forEach((menuItem) => {
+         menuItem.addEventListener('click', (event) => {
+             const itemName = menuItem.querySelector('h2').textContent;
+             const itemPrice = menuItem.querySelector('.card-description').textContent;
+         
+             // Prompt for quantity
+             const quantity = prompt(`Enter the quantity for ${itemName}:`);
+         
+             // Create a new object representing the selected item
+             const selectedItem = {
+                 name: itemName,
+                 price: itemPrice,
+                 quantity: quantity
+             };
+         
+             // Add the selected item to the array
+             selectedItems.push(selectedItem);
+         
+             // Update the cart display
+             updateCart();
+         
+             // Prevent the default link behavior
+             event.preventDefault();
+         });
+     });
 }
+
+function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = ''; // Clear the previous cart items
+  
+    selectedItems.forEach((item) => {
+      const cartItem = document.createElement('li');
+      cartItem.textContent = `${item.quantity}x ${item.name} - $${item.price}`;
+      cartItems.appendChild(cartItem);
+    });
+
+    const cartMenu = document.getElementById('cartMenu');
+  if (selectedItems.length > 0) {
+    cartMenu.classList.add('visible');
+  } else {
+    cartMenu.classList.remove('visible');
+  }
+  }
 
 
 export default createMenu;
