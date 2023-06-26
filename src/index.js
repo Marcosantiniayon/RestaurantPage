@@ -49,3 +49,8 @@ function clearContent() {
     }
 }
 
+document.getElementById('menuTab').addEventListener('click', () => { 
+    console.log('menuTab clicked');
+    changeContent(createMenu); 
+    setActiveTab('menuTab'); 
+});

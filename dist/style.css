@@ -11,7 +11,7 @@ html, body {
     background-size: cover; 
     font-family: 'Montserrat', sans-serif;
     }
-body::before {
+  body::before {
     content: "";
     position: fixed; /* Cover the entire viewport */
     top: 0;
@@ -23,6 +23,10 @@ body::before {
     z-index: -1; /* Place this layer behind the content */
 }
 
+a{
+    color:rgb(126, 208, 240)
+}
+
   #headerDiv{
     background-color: rgba(0,0,0,.8);
     backdrop-filter: blur(10px);
@@ -30,6 +34,7 @@ body::before {
     width:100%;
     width: 100vw;
     max-width: 100vw;
+    position: relative; 
   }
 
   #headerDiv h1{
@@ -177,22 +182,32 @@ padding: 0;
     font-family: inherit;
     font-size: larger;
     outline: none;
+    position: relative;
   }
   
-  #cartMenu {
+#cartMenu {
     display: none;
     position: absolute;
-    top: 100%;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(157, 90, 90, 0.8);
     border-radius: 4px;
     padding: 10px;
-  }
+    /* border: 1px solid black; */
+    margin-right: 30px;
+    max-width: 300px;
+}
   
   #cartMenu.visible {
     display: block;
   }
+  #cartItems {
+    display: none;
+  }
   
+  #cartItems.visible {
+    display: block;  /* or any other way you would like to display your cart items */
+  }
+
 /* ------ END OF MENU ------- */
   
   footer {
@@ -212,4 +227,3 @@ padding: 0;
 .fade-out {
     opacity: 0;
 }
-

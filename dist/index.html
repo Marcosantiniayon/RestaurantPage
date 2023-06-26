@@ -13,14 +13,20 @@
 </head>
 <body>
     <div id="content">
-        <div id="tabs">
-            <button id="cartTab">Cart</button>
+        <div class="navigation">
+            <div class="tab-buttons">
+                <button class="tab-button active" id="homeButton">Home</button>
+                <button class="tab-button" id="menuButton">Menu</button>
+                <button class="tab-button" id="contactButton">Contact</button>
+            </div>
+            <div class="cart-container">
+                <button id="cartButton" class="cart-button">Cart</button>
+                <div id="cartMenu" class="cart-menu">
+                    <ul id="cartItems"></ul>
+                </div>
+            </div>
         </div>
-
-        <div id="cartMenu">
-            <ul id="cartItems"></ul>
-        </div>
-    </div>
+    </div>    
     <script src="main.js"></script>
 </body>
 </html>

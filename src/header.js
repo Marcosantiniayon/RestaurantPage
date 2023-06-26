@@ -1,6 +1,5 @@
 function createHeader() {
     const body = document.querySelector('body');
-    document.body.style.backgroundImage = "url('..pasta3.jpg')";
 
     // Header for all pages
     const headerDiv = document.createElement('div');
@@ -29,6 +28,12 @@ function createHeader() {
     contactTab.id = 'contactTab';
     contactTab.textContent = 'Contact';
     tabs.appendChild(contactTab);
+
+    const cartButton = document.createElement('button');
+    cartButton.id = 'cartButton';
+    cartButton.textContent = 'Cart';
+    cartButton.classList.add('tab-button');
+    cartMenu.appendChild(cartButton);
     
     body.insertBefore(headerDiv, body.childNodes[0]);
 }

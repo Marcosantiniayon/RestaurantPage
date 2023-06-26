@@ -18,13 +18,21 @@ function createContact() {
     manager.textContent = 'Manager'
     innerContent.appendChild(manager);
 
-    const phone = document.createElement('p');
-    phone.textContent = '(480) 123-4567'
+    const phone = document.createElement('a');
+    phone.href = "tel:4801234567";
+    phone.textContent = '(480) 123-4567';
     innerContent.appendChild(phone);
 
-    const email = document.createElement('p');
-    email.textContent = 'santini.M@yahoo.com'
+    const breakLine = document.createElement('br');
+    innerContent.appendChild(breakLine);
+    const breakLine2 = document.createElement('br');
+    innerContent.appendChild(breakLine2);
+
+    const email = document.createElement('a');
+    email.href = "mailto:santini.M@yahoo.com";
+    email.textContent = 'santini.M@yahoo.com';
     innerContent.appendChild(email);
+
 }
 
 
