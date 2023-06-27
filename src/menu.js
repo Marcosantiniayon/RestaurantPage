@@ -48,34 +48,39 @@ function createItemGroup(title, items) {
 }
 
 function createCartMenu() {
-    const cartMenu = document.createElement('div');
-    cartMenu.id = 'cartMenu';
-    cartMenu.classList.add('dropdown-menu');
+  const cartMenu = document.createElement('div');
+  cartMenu.id = 'cartMenu';
+  cartMenu.classList.add('dropdown-menu');
 
-    const cartButton = document.createElement('button');
-    cartButton.id = 'cartButton';
-    cartButton.classList.add('tab-button');
-    cartMenu.appendChild(cartButton);
+  const cartButton = document.createElement('button');
+  cartButton.id = 'cartButton';
+  cartButton.classList.add('tab-button');
+  cartMenu.appendChild(cartButton);
 
-    const cartIcon = document.createElement('img');
-    cartIcon.src = '../images/shopping-cart.png';  // Path to your image
-    cartIcon.alt = 'Cart';
-    cartIcon.style.width = '30px';  // You can set the width and height as per your preference
-    cartIcon.style.height = '30px';
-    cartButton.appendChild(cartIcon);
+  const cartIcon = document.createElement('img');
+  cartIcon.src = '../images/shopping-cart.png';  
+  cartIcon.alt = 'Cart';
+  cartIcon.style.width = '30px';  
+  cartIcon.style.height = '30px';
+  cartButton.appendChild(cartIcon);
 
-    const cartItems = document.createElement('ul');
-    cartItems.id = 'cartItems';
-    cartItems.classList.add('cart-items');
-    cartMenu.appendChild(cartItems);
+  const cartItemsContainer = document.createElement('div');
+  cartItemsContainer.id = 'cartItemsContainer';
+  cartItemsContainer.classList.add('cart-items-container');
+  cartMenu.appendChild(cartItemsContainer);
 
-    // Add event listener to the cart button
-    cartButton.addEventListener('click', () => {
-        cartItems.classList.toggle('visible');
-    });
+  const cartItems = document.createElement('ul');
+  cartItems.id = 'cartItems';
+  cartItems.classList.add('cart-items');
+  cartItemsContainer.appendChild(cartItems);
 
-    document.getElementById('tabs').appendChild(cartMenu);
+  cartIcon.addEventListener('click', () => {
+    cartItems.classList.toggle('visible');
+  });
+
+  document.getElementById('tabs').appendChild(cartMenu);
 }
+
 
 
 
@@ -162,11 +167,15 @@ function updateCart() {
   });
 
   const cartMenu = document.getElementById('cartMenu');
+  const cartItemsContainer = document.getElementById('cartItemsContainer');
   if (selectedItems.length > 0) {
     cartMenu.classList.add('visible');
+    cartItemsContainer.classList.add('visible'); // Make sure the cart items container is visible too
   } else {
     cartMenu.classList.remove('visible');
+    cartItemsContainer.classList.remove('visible');
   }
 }
+
 
 export default createMenu;
