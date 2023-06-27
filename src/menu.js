@@ -1,6 +1,6 @@
 let selectedItems = [];
 
-function createMenuItemCard(name, imageUrl, description) {
+function createMenuItemCard(name, imageUrl, price, description) {
   const card = document.createElement('li');
   card.classList.add('card');
 
@@ -18,10 +18,10 @@ function createMenuItemCard(name, imageUrl, description) {
   h2.classList.add('card-title');
   card.appendChild(h2);
 
-  const p = document.createElement('p');
-  p.textContent = description;
-  p.classList.add('card-description');
-  card.appendChild(p);
+  const priceP = document.createElement('p');
+  priceP.textContent = `$${price.toFixed(2)}`; // ensure price is always displayed with two decimal places
+  priceP.classList.add('card-price');
+  card.appendChild(priceP);
 
   return card;
 }
@@ -39,7 +39,7 @@ function createItemGroup(title, items) {
   itemsDiv.classList.add('items-div');
 
   items.forEach((item) => {
-    const itemCard = createMenuItemCard(item.name, item.imageUrl, item.description);
+    const itemCard = createMenuItemCard(item.name, item.imageUrl, item.price, item.description);
     itemsDiv.appendChild(itemCard);
   });
 
@@ -98,25 +98,25 @@ function createMenu() {
   innerContent.appendChild(menuH1);
 
   const beverages = [
-    { name: 'Soda', imageUrl: '../images/soda2.jpg', description: 'Cool and refreshing.' },
-    { name: 'Lemonade', imageUrl: '../images/lemonade.jpg', description: 'Sweet and tangy.' },
-    { name: 'Wine', imageUrl: '../images/wine.jpg', description: 'Elegant and sophisticated.' }
+    { name: 'Soda', imageUrl: '../images/soda2.jpg', price: 1.99, description: 'Cool and refreshing' },
+    { name: 'Lemonade', imageUrl: '../images/lemonade.jpg', price: 1.99, description: 'Sweet and tangy' },
+    { name: 'Wine', imageUrl: '../images/wine.jpg', price: 6.99, description: 'Elegant and sophisticated' }
   ];
   const beveragesDiv = createItemGroup('Beverages', beverages);
   innerContent.appendChild(beveragesDiv);
 
   const sides = [
-    { name: 'Breadsticks', imageUrl: '../images/breadsticks.jpg', description: 'Crunchy and delicious.' },
-    { name: 'Mozzarella Sticks', imageUrl: '../images/mozarellasticks.jpg', description: 'Cheesy and filling.' },
-    { name: 'Salad', imageUrl: '../images/salad.jpg', description: 'Light and healthy.' }
+    { name: 'Breadsticks', imageUrl: '../images/breadsticks.jpg', price: 7.99, description: 'Crunchy and delicious' },
+    { name: 'Mozzarella Sticks', imageUrl: '../images/mozarellasticks.jpg', price: 9.99, description: 'Cheesy and filling' },
+    { name: 'Salad', imageUrl: '../images/salad.jpg', price: 5.99, description: 'Light and healthy' }
   ];
   const sidesDiv = createItemGroup('Sides', sides);
   innerContent.appendChild(sidesDiv);
 
   const mainDishes = [
-    { name: 'Lasagna', imageUrl: '../images/lasagna.jpg', description: 'Rich and flavorful.' },
-    { name: 'Spaghetti & Meatsauce', imageUrl: '../images/spaghetti.jpg', description: 'Classic and hearty.' },
-    { name: 'Margherita Pizza', imageUrl: '../images/pizza.jpg', description: 'Simple and delicious.' }
+    { name: 'Lasagna', imageUrl: '../images/lasagna.jpg', price: 14.99, description: 'Rich and flavorful' },
+    { name: 'Spaghetti & Meatsauce', imageUrl: '../images/spaghetti.jpg', price: 15.99, description: 'Classic and hearty' },
+    { name: 'Margherita Pizza', imageUrl: '../images/pizza.jpg', price: 16.99, description: 'Simple and delicious' }
   ];
   const mainDishesDiv = createItemGroup('Main Dishes', mainDishes);
   innerContent.appendChild(mainDishesDiv);
@@ -128,43 +128,73 @@ function createMenu() {
   createCartMenu();
 
   // Add event listeners to menu items
-  const menuItems = document.querySelectorAll('.card');
-  menuItems.forEach((menuItem) => {
-    menuItem.addEventListener('click', (event) => {
-      const itemName = menuItem.querySelector('h2').textContent;
-      const itemPrice = menuItem.querySelector('.card-description').textContent;
+  // Add event listeners to menu items
+const menuItems = document.querySelectorAll('.card');
+menuItems.forEach((menuItem) => {
+  menuItem.addEventListener('click', (event) => {
+    const itemName = menuItem.querySelector('h2').textContent;
+    const itemPrice = parseFloat(menuItem.querySelector('.card-price').textContent.replace('$', ''));
 
-      // Prompt for quantity
-      const quantity = prompt(`Enter the quantity for ${itemName}:`);
+    // Prompt for quantity
+    const quantity = parseInt(prompt(`Enter the quantity for ${itemName}:`));
 
-      // Create a new object representing the selected item
-      const selectedItem = {
-        name: itemName,
-        price: itemPrice,
-        quantity: quantity
-      };
+    // Calculate total price
+    const totalPrice = (itemPrice * quantity).toFixed(2);
 
-      // Add the selected item to the array
+    // Create a new object representing the selected item
+    const selectedItem = {
+      name: itemName,
+      price: itemPrice,
+      quantity: quantity,
+      totalPrice: totalPrice
+    };
+
+    // Check if the item already exists in the cart
+  let existingItem = selectedItems.find(item => item.name === selectedItem.name);
+  if (existingItem) {
+      // Update the quantity and price of the existing item
+      existingItem.quantity += selectedItem.quantity;
+      existingItem.price += selectedItem.price;
+  } else {
+      // Add the new item to the cart
       selectedItems.push(selectedItem);
+  }
 
-      // Update the cart display
-      updateCart();
 
-      // Prevent the default link behavior
-      event.preventDefault();
-    });
+    // Update the cart display
+    updateCart();
+
+    // Prevent the default link behavior
+    event.preventDefault();
   });
+});
+
 }
 
 function updateCart() {
   const cartItems = document.getElementById('cartItems');
   cartItems.innerHTML = ''; // Clear the previous cart items
 
+  let total = 0; // Initialize total price
+
   selectedItems.forEach((item) => {
+    const totalItemPrice = item.price * item.quantity;
+    total += totalItemPrice; // Add this item's total price to the total
+
     const cartItem = document.createElement('li');
-    cartItem.textContent = `${item.quantity}x ${item.name} - $${item.price}`;
+    cartItem.textContent = `${item.quantity}x ${item.name} ($${item.price.toFixed(2)}) - $${totalItemPrice.toFixed(2)}`;
     cartItems.appendChild(cartItem);
   });
+
+    // Create and append a spacer element
+    const spacer = document.createElement('li');
+    spacer.innerHTML = '--------------------'; // Non-breaking space
+    cartItems.appendChild(spacer);
+
+  // After the loop, create and append a total price element
+  const totalPriceElement = document.createElement('li');
+  totalPriceElement.textContent = `TOTAL: $${total.toFixed(2)}`;
+  cartItems.appendChild(totalPriceElement);
 
   const cartMenu = document.getElementById('cartMenu');
   const cartItemsContainer = document.getElementById('cartItemsContainer');
@@ -176,6 +206,7 @@ function updateCart() {
     cartItemsContainer.classList.remove('visible');
   }
 }
+
 
 
 export default createMenu;
