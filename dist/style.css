@@ -23,6 +23,14 @@ html, body {
     z-index: -1; /* Place this layer behind the content */
 }
 
+footer {
+    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
 a{
     color:rgb(126, 208, 240)
 }
@@ -90,15 +98,6 @@ a{
     position: relative;
   }
   
-/* #cartMenu {
-    display: none;
-    position: absolute;
-    right: 50px;
-    border-radius: 4px;
-    padding: 10px;
-    margin-right: 30px;
-    max-width: 300px;
-} */
 #cartMenu {
     display: none;
     position: absolute;
@@ -224,14 +223,39 @@ padding: 0;
 
 
 
-/* ------ END OF MENU ------- */
-  
-  footer {
-    flex-shrink: 0;
+/* ------ MODAL ------- */
+#modal {
     position: fixed;
-    bottom: 0;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 15%;
+    border-radius: 12px;
+    border: 2px solid;
+    overflow: auto;
+    background-color: rgb(23, 23, 23);
+    display: none; /* added this line */
+    align-items: center;
+    justify-content: center;
+}
+
+  
+  .modal-content {
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-		text-align: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Adjust the opacity as desired */
+    z-index: 999; /* Ensure the overlay appears above other elements */
+    display: none;
   }
 
 /* CONTENT FADE IN-OUT EFFECT */

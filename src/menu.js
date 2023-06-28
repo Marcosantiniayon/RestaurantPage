@@ -23,6 +23,11 @@ function createMenuItemCard(name, imageUrl, price, description) {
   priceP.classList.add('card-price');
   card.appendChild(priceP);
 
+  const item = { name, imageUrl, price, description };
+  card.addEventListener('click', function() {
+    openModal(item);
+  });
+
   return card;
 }
 
@@ -81,10 +86,14 @@ function createCartMenu() {
   document.getElementById('tabs').appendChild(cartMenu);
 }
 
+function createMenu(item) {
+  const li = document.createElement('li');
+  li.classList.add('card');
 
+  li.addEventListener('click', function() {
+    openModal(item); // Pass the item object to the function
+  });
 
-
-function createMenu() {
   console.log('createMenu() function called');
 
   const content = document.getElementById('content');
@@ -124,51 +133,16 @@ function createMenu() {
   // Append innerContent to content
   content.appendChild(innerContent);
 
-  // Create the cart menu
   createCartMenu();
+}
+function openModal(item) {
+  const modal = document.getElementById('modal');
+  var modalOverlay = document.querySelector(".modal-overlay");
 
-  // Add event listeners to menu items
-  // Add event listeners to menu items
-const menuItems = document.querySelectorAll('.card');
-menuItems.forEach((menuItem) => {
-  menuItem.addEventListener('click', (event) => {
-    const itemName = menuItem.querySelector('h2').textContent;
-    const itemPrice = parseFloat(menuItem.querySelector('.card-price').textContent.replace('$', ''));
-
-    // Prompt for quantity
-    const quantity = parseInt(prompt(`Enter the quantity for ${itemName}:`));
-
-    // Calculate total price
-    const totalPrice = (itemPrice * quantity).toFixed(2);
-
-    // Create a new object representing the selected item
-    const selectedItem = {
-      name: itemName,
-      price: itemPrice,
-      quantity: quantity,
-      totalPrice: totalPrice
-    };
-
-    // Check if the item already exists in the cart
-  let existingItem = selectedItems.find(item => item.name === selectedItem.name);
-  if (existingItem) {
-      // Update the quantity and price of the existing item
-      existingItem.quantity += selectedItem.quantity;
-      existingItem.price += selectedItem.price;
-  } else {
-      // Add the new item to the cart
-      selectedItems.push(selectedItem);
-  }
-
-
-    // Update the cart display
-    updateCart();
-
-    // Prevent the default link behavior
-    event.preventDefault();
-  });
-});
-
+  modal.querySelector(".modal-title").textContent = item.name;
+  modal.querySelector(".modal-price").textContent = `$${item.price.toFixed(2)}`;  // ensure price is always displayed with two decimal places
+  modal.style.display = 'flex';  
+  modalOverlay.style.display = "block";
 }
 
 function updateCart() {
@@ -205,8 +179,67 @@ function updateCart() {
     cartMenu.classList.remove('visible');
     cartItemsContainer.classList.remove('visible');
   }
+  // Update the quantity in the modal if it's currently displaying
+  const modal = document.getElementById('modal');
+  if (modal.style.display === 'flex') {
+    const existingItem = selectedItems.find(item => item.name === modal.querySelector('.modal-title').textContent);
+    if (existingItem) {
+      modal.querySelector('.modal-quantity').value = existingItem.quantity;
+    } else {
+      modal.querySelector('.modal-quantity').value = '';
+    }
+  }
 }
 
+function handleModalFormSubmission() {
+  document.getElementById('modalSubmit').addEventListener('click', (event) => {
+    // Prevent the form from being submitted
+    event.preventDefault();
+
+    // Get item details from the modal
+    const modal = document.getElementById('modal');
+    var modalOverlay = document.querySelector(".modal-overlay");
+    const itemName = modal.querySelector('.modal-title').textContent;
+    const itemPrice = parseFloat(modal.querySelector('.modal-price').textContent.replace('$', ''));
+    const quantity = parseInt(modal.querySelector('.modal-quantity').value);
+
+    // Calculate total price
+    const totalPrice = (itemPrice * quantity).toFixed(2);
+
+    // Create a new object representing the selected item
+    const selectedItem = {
+      name: itemName,
+      price: itemPrice,
+      quantity: quantity,
+      totalPrice: totalPrice
+    };
+
+    // Check if the item already exists in the cart
+    const existingItem = selectedItems.find(item => item.name === selectedItem.name);
+    if (existingItem) {
+      // Update the quantity and price of the existing item
+      existingItem.quantity = selectedItem.quantity;  // Changed from += to =
+      existingItem.price = selectedItem.price;  // Changed from += to =
+    } else {
+      // Add the new item to the cart
+      selectedItems.push(selectedItem);
+    }
+
+    // Update the cart display
+    updateCart();
+
+    // Hide the modal
+    modal.style.display = 'none';
+    modalOverlay.style.display = 'none';
+    modal.querySelector('.modal-quantity').value = '';
+
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  createMenu();
+  handleModalFormSubmission();
+});
 
 
 export default createMenu;
