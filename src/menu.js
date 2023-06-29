@@ -1,3 +1,16 @@
+import sodaImage from '../images/soda2.jpg';
+import lemonadeImage from '../images/lemonade.jpg';
+import wineImage from '../images/wine.jpg';
+import breadsticksImage from '../images/breadsticks.jpg';
+import mozzarellaSticksImage from '../images/mozzarellasticks.jpg';
+import saladImage from '../images/salad.jpg';
+import lasagnaImage from '../images/lasagna.jpg';
+import spaghettiImage from '../images/spaghetti.jpg';
+import pizzaImage from '../images/pizza.jpg';
+import cartIconImage from '../images/shopping-cart.png';
+
+// Rest of the code...
+
 let selectedItems = [];
 
 function createMenuItemCard(name, imageUrl, price, description) {
@@ -9,7 +22,7 @@ function createMenuItemCard(name, imageUrl, price, description) {
   card.appendChild(imgDiv);
 
   const img = document.createElement('img');
-  img.src = require(`../images/${imageUrl}`).default; // Use require to dynamically import the image
+  img.src = imageUrl;
   img.classList.add('menu-image');
   imgDiv.appendChild(img);
 
@@ -63,7 +76,7 @@ function createCartMenu() {
   cartMenu.appendChild(cartButton);
 
   const cartIcon = document.createElement('img');
-  cartIcon.src = require('../images/shopping-cart.png').default; // Use require to import the cart icon image
+  cartIcon.src = cartIconImage;
   cartIcon.alt = 'Cart';
   cartIcon.style.width = '30px';
   cartIcon.style.height = '30px';
@@ -107,25 +120,25 @@ function createMenu(item) {
   innerContent.appendChild(menuH1);
 
   const beverages = [
-    { name: 'Soda', imageUrl: 'soda2.jpg', price: 1.99, description: 'Cool and refreshing' },
-    { name: 'Lemonade', imageUrl: 'lemonade.jpg', price:     1.99, description: 'Sweet and tangy' },
-    { name: 'Wine', imageUrl: 'wine.jpg', price: 6.99, description: 'Elegant and sophisticated' }
+    { name: 'Soda', imageUrl: sodaImage, price: 1.99, description: 'Cool and refreshing' },
+    { name: 'Lemonade', imageUrl: lemonadeImage, price: 1.99, description: 'Sweet and tangy' },
+    { name: 'Wine', imageUrl: wineImage, price: 6.99, description: 'Elegant and sophisticated' }
   ];
   const beveragesDiv = createItemGroup('Beverages', beverages);
   innerContent.appendChild(beveragesDiv);
 
   const sides = [
-    { name: 'Breadsticks', imageUrl: 'breadsticks.jpg', price: 7.99, description: 'Crunchy and delicious' },
-    { name: 'Mozzarella Sticks', imageUrl: 'mozzarellasticks.jpg', price: 9.99, description: 'Cheesy and filling' },
-    { name: 'Salad', imageUrl: 'salad.jpg', price: 5.99, description: 'Light and healthy' }
+    { name: 'Breadsticks', imageUrl: breadsticksImage, price: 7.99, description: 'Crunchy and delicious' },
+    { name: 'Mozzarella Sticks', imageUrl: mozzarellaSticksImage, price: 9.99, description: 'Cheesy and filling' },
+    { name: 'Salad', imageUrl: saladImage, price: 5.99, description: 'Light and healthy' }
   ];
   const sidesDiv = createItemGroup('Sides', sides);
   innerContent.appendChild(sidesDiv);
 
   const mainDishes = [
-    { name: 'Lasagna', imageUrl: 'lasagna.jpg', price: 14.99, description: 'Rich and flavorful' },
-    { name: 'Spaghetti & Meatsauce', imageUrl: 'spaghetti.jpg', price: 15.99, description: 'Classic and hearty' },
-    { name: 'Margherita Pizza', imageUrl: 'pizza.jpg', price: 16.99, description: 'Simple and delicious' }
+    { name: 'Lasagna', imageUrl: lasagnaImage, price: 14.99, description: 'Rich and flavorful' },
+    { name: 'Spaghetti & Meatsauce', imageUrl: spaghettiImage, price: 15.99, description: 'Classic and hearty' },
+    { name: 'Margherita Pizza', imageUrl: pizzaImage, price: 16.99, description: 'Simple and delicious' }
   ];
   const mainDishesDiv = createItemGroup('Main Dishes', mainDishes);
   innerContent.appendChild(mainDishesDiv);
