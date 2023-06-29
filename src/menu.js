@@ -2,7 +2,7 @@ import sodaImage from '../images/soda2.jpg';
 import lemonadeImage from '../images/lemonade.jpg';
 import wineImage from '../images/wine.jpg';
 import breadsticksImage from '../images/breadsticks.jpg';
-import mozzarellaSticksImage from '../images/mozzarellasticks.jpg';
+import mozzarellasticksImage from '../images/mozarellasticks.jpg';
 import saladImage from '../images/salad.jpg';
 import lasagnaImage from '../images/lasagna.jpg';
 import spaghettiImage from '../images/spaghetti.jpg';
@@ -129,7 +129,7 @@ function createMenu(item) {
 
   const sides = [
     { name: 'Breadsticks', imageUrl: breadsticksImage, price: 7.99, description: 'Crunchy and delicious' },
-    { name: 'Mozzarella Sticks', imageUrl: mozzarellaSticksImage, price: 9.99, description: 'Cheesy and filling' },
+    { name: 'Mozzarella Sticks', imageUrl: mozzarellasticksImage, price: 9.99, description: 'Cheesy and filling' },
     { name: 'Salad', imageUrl: saladImage, price: 5.99, description: 'Light and healthy' }
   ];
   const sidesDiv = createItemGroup('Sides', sides);
