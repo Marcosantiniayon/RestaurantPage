@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        <div class="navigation">
+            <div class="tab-buttons">
+                <button class="tab-button active" id="homeButton">Home</button>
+                <button class="tab-button" id="menuButton">Menu</button>
+                <button class="tab-button" id="contactButton">Contact</button>
+            </div>
+            <div class="cart-container">
+                <button id="cartButton" class="cart-button">Cart</button>
+                <div id="cartMenu" class="cart-menu">
+                    <ul id="cartItems"></ul>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="modal-overlay"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title"></h2>
+            <p class="modal-price"></p>
+            <input type="number" class="modal-quantity" min="0"> 
+            <button id="modalSubmit">Submit</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
