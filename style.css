@@ -18,7 +18,7 @@ html, body {
     right: 0;
     bottom: 0;
     left: 0;
-    background: url('../images/pasta3.jpg') center center / cover no-repeat;
+    background: url('./images/pasta3.jpg') center center / cover no-repeat;
     filter: sepia(15%) contrast(100%) brightness(75%) hue-rotate(-5deg);
     z-index: -1; /* Place this layer behind the content */
 }
