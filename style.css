@@ -105,8 +105,8 @@ a{
     left: 87%;
     border-radius: 4px;
     /* padding: 10px; */
-    max-width: 300px;
-    width: 300px; /* set to desired width */
+    max-width: 20%;
+    width: 20%;
     transform: translateX(-50%); /* centers the dropdown */
   }
   .cart-items-container {
